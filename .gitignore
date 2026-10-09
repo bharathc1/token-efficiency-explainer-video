@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+.hyperframes/
+.media/
+.thumbnails/
+.waveform-cache/
+snapshots/
+renders/
+# generated audio (personal voice clone + licensed music): regenerate with the pipeline
+assets/voice/
+assets/bgm/
+audio_request.json
+audio_engine_meta.json

@@ -1,0 +1,64 @@
+<template>
+  <style>
+    @font-face { font-family: "EB Garamond"; font-weight: 400; src: url("assets/fonts/EBGaramond-Regular.woff2") format("woff2"); }
+    @font-face { font-family: "JetBrains Mono"; font-weight: 500; src: url("assets/fonts/JetBrainsMono-Medium.woff2") format("woff2"); }
+    @font-face { font-family: "JetBrains Mono"; font-weight: 400; src: url("assets/fonts/JetBrainsMono-400.woff2") format("woff2"); }
+    #root { position: relative; width: 1080px; height: 1080px; overflow: hidden; }
+    #root .f07-bg { position: absolute; left: 0; top: 0; width: 1080px; height: 1080px; background-color: #FAF9F5;
+      background-image: linear-gradient(to right, rgba(20,20,19,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(20,20,19,0.07) 1px, transparent 1px);
+      background-size: 120px 120px; }
+    #root .f07-recap { position: absolute; left: 80px; width: 920px; height: 62px; display: flex; align-items: baseline; }
+    #root .f07-tag { font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 26px; letter-spacing: 0.02em; color: #CC785C; width: 56px; flex: none; }
+    #root .f07-line { font-family: "EB Garamond", Georgia, serif; font-weight: 400; font-size: 54px; line-height: 62px; letter-spacing: -0.018em; color: #141413; white-space: nowrap; }
+    #root #f07-r1 { top: 84px; }
+    #root #f07-r2 { top: 150px; }
+    #root #f07-r3 { top: 216px; }
+    #root .f07-rule { position: absolute; left: 80px; top: 296px; width: 920px; height: 1px; background: rgba(20,20,19,0.12); transform-origin: left center; }
+    #root .f07-fig { position: absolute; left: 80px; height: 200px; display: flex; align-items: baseline; transform-origin: left bottom; }
+    #root #f07-figA { top: 312px; }
+    #root #f07-figB { top: 520px; }
+    #root .f07-num { font-family: "EB Garamond", Georgia, serif; font-weight: 400; font-size: 215px; line-height: 190px; letter-spacing: -0.025em; color: #141413; white-space: nowrap; }
+    #root .f07-unit { font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 64px; margin-left: 16px; color: #141413; }
+    #root .f07-arrow { font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 96px; margin-right: 24px; color: #141413; }
+    #root .f07-label { position: absolute; left: 84px; top: 704px; font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 26px; letter-spacing: 0.02em; color: #141413; opacity: 0.7; white-space: nowrap; }
+    #root .f07-closer { position: absolute; left: 80px; top: 752px; width: 920px; margin: 0; font-family: "EB Garamond", Georgia, serif; font-style: italic; font-weight: 400; font-size: 58px; line-height: 1.05; letter-spacing: -0.012em; color: #141413; }
+    #root .f07-note { position: absolute; left: 80px; top: 842px; width: 920px; margin: 0; font-family: "JetBrains Mono", monospace; font-weight: 400; font-size: 22px; line-height: 1.4; letter-spacing: 0.02em; color: rgba(20,20,19,0.8); }
+  </style>
+  <div id="root" data-composition-id="07-close" data-start="0" data-duration="8.307" data-width="1080" data-height="1080">
+    <div id="f07-bg" class="clip f07-bg" data-start="0" data-duration="8.307" data-track-index="0"></div>
+    <div id="f07-r1" class="f07-recap"><span id="f07-t1" class="f07-tag">1</span><span id="f07-l1" class="f07-line">Reuse the prefix</span></div>
+    <div id="f07-r2" class="f07-recap"><span id="f07-t2" class="f07-tag">2</span><span id="f07-l2" class="f07-line">Scope the context</span></div>
+    <div id="f07-r3" class="f07-recap"><span id="f07-t3" class="f07-tag">3</span><span id="f07-l3" class="f07-line">Fit the recovery</span></div>
+    <div id="f07-rule" class="f07-rule"></div>
+    <div id="f07-figA" class="f07-fig"><span id="f07-numA" class="f07-num">2.306</span><span id="f07-unitA" class="f07-unit">M</span></div>
+    <div id="f07-figB" class="f07-fig"><span id="f07-arrow" class="f07-arrow">→</span><span id="f07-numB" class="f07-num">0.739</span><span id="f07-unitB" class="f07-unit">M</span></div>
+    <div id="f07-label" class="f07-label">raw tokens / turn</div>
+    <p id="f07-closer" class="f07-closer">Make token efficiency observable.</p>
+    <p id="f07-note" class="f07-note">Collate's own agents · recorded provider charges only · not customer savings</p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    window.__timelines = window.__timelines || {};
+    var tl = gsap.timeline({ paused: true });
+    // Scene 1: one recap line per phrase, tagged 1/2/3
+    var rec = function (n, at) {
+      tl.fromTo("#f07-t" + n, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, at);
+      tl.fromTo("#f07-l" + n, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, at);
+    };
+    rec(1, 0.15);
+    rec(2, 1.5);
+    rec(3, 2.9);
+    // Scene 2: recap dims, hook numbers return
+    tl.fromTo("#f07-r1, #f07-r2, #f07-r3", { opacity: 1 }, { opacity: 0.35, duration: 0.6, ease: "power2.out", immediateRender: false }, 4.5);
+    tl.fromTo("#f07-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power2.out" }, 4.5);
+    tl.fromTo("#f07-figA", { opacity: 0, y: 30, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 4.6);
+    tl.fromTo("#f07-figB", { opacity: 0, y: 30, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 5.6);
+    tl.to(["#f07-numB", "#f07-unitB", "#f07-arrow"], { color: "#CC785C", duration: 0.35, ease: "power2.out" }, 6.0);
+    tl.fromTo("#f07-label", { opacity: 0 }, { opacity: 0.7, duration: 0.5, ease: "power2.out" }, 6.3);
+    // Scene 3: closer then scope note, hold
+    tl.fromTo("#f07-closer", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 7.0);
+    tl.fromTo("#f07-note", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 7.4);
+    tl.timeScale(0.9088);
+    window.__timelines["07-close"] = tl;
+  </script>
+</template>

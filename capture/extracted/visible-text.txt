@@ -1,0 +1,31 @@
+Token Efficiency in Production: Lessons From Running a Multi-Agent Platform (Collate engineering)
+
+A good harness is selective. It gives the model what the current task needs and leaves the rest out. A production agent spends tokens on much more than its final answer: it routes work, passes context to specialized workers, reads tool results, repairs SQL, and revisits earlier turns.
+
+Over August and September, Collate's engineering team traced those steps through Collate's AI Platform in production. Mean raw tokens per turn fell 68% and recorded spend per turn fell 67%, while output per turn barely moved. The savings came from how the harness moved context. The strongest measured change was a reduction in repeated cache writes.
+
+Samples: +400 conversations, +1,000 turns.
+Metric | Initial | Later | Change
+Mean raw tokens/turn | 2.306M | 0.739M | -68.0%
+Uncached input tokens/turn | 172.8K | 124.8K | -27.7%
+Cache-write tokens/turn | 863.9K | 178.5K | -79.3%
+Cache-read tokens/turn | 1.256M | 0.422M | -66.4%
+Output tokens/turn | 13.5K | 13.3K | -1.7%
+Recorded USD/turn | $3.66 | $1.22 | -66.5%
+Recorded USD/conversation | $7.57 | $2.92 | -61.5%
+Cache-read/cache-write ratio | 1.45 | 2.36 | +62.6%
+Recorded USD is the model-provider charge only; it excludes tool, warehouse, infrastructure, and observability costs. These figures measure the running cost of Collate's own agents, not savings a customer's agents get from being grounded in Collate.
+Our agents, at nearly unchanged output volume per turn, cost less than half as much per conversation once context reuse was designed in.
+
+1. Cache economics depend on reuse. Multipliers vs uncached input: uncached 1.0x; five-minute cache write 1.25x; one-hour cache write 2.0x; cache read 0.1x. A write only pays off when reused within its TTL. One write plus one read costs 1.35 units vs 2.0 for two uncached requests. A write with no read costs 1.25 for work that would have cost 1.0. Diagnostics: cache-read to cache-write ratio; calls that write without reading; share of cost from writes. Example: with the default 5-minute write, an 8.8-minute gap caused roughly 800K tokens to be rewritten.
+
+2. Organize prompts by sharing scope. Prefix caching covers content up to its boundary; changing an earlier block invalidates later blocks. Order matters. Shared request context moved ahead of agent-specific instructions; the six planner-side call paths got one byte-identical system prompt, with each stage's role instructions in its final task message. Earlier planner paths rewrote roughly 390-410K history tokens per call; after the change, gate, remediation, and synthesis agents read the router's cache entry with zero cache writes. A generated_at timestamp in the AI Persona Context made the cached prefix differ on every request. Rule: put content into a cached segment according to the calls that can reuse it.
+
+3. Give workers the context their task needs. The curated AI Persona Context document was about 500K characters, roughly 125K tokens. The planner reads the full document; when delegating, it copies the relevant definitions, expressions, and identifiers verbatim into the worker's task. Workers exclude the full document by default. SQL pipeline: shared schema first, invocation-specific context next, failed query, error, and task last.
+
+4. Recovery should match the failure. In an August sample, two messages accounted for 47% of credits across 18 messages while repeatedly hitting an unavailable Query Runner. One message used 44 model calls without returning rows: the repair path treated a connection failure as a SQL error and kept regenerating the statement. Infrastructure failures are now classified separately and kept out of SQL-fix retries. Rule: a recovery call should have a plausible way to change the outcome. Aligning worker prompts with a text-only completion path cut invalid finish calls from 32.7% to 0% in a targeted evaluation.
+
+5. Apply optimizations to the workload that benefits. Automation history: moving the history cache marker forward in automation tool loops gave an estimated 17-31% savings across three workloads (replay estimate, separate from the production comparison).
+
+Making the lessons durable: decision records (ADRs) and regression checks for stable cached prefixes, identical planner system prompts, bounded cache-marker counts, shared SQL context, tool-result assertions. The data supports the direction of the work without establishing equal answer quality or assigning an exact share of savings to each change.
+Questions: which context must this stage see, which parts will another call reuse, what can this retry repair, and what bytes are actually sent?

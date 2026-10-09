@@ -1,0 +1,114 @@
+<template>
+  <style>
+    @font-face { font-family: "EB Garamond"; font-weight: 400; src: url("assets/fonts/EBGaramond-Regular.woff2") format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 400; src: url("assets/fonts/Inter-Regular.woff2") format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 500; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); }
+    @font-face { font-family: "JetBrains Mono"; font-weight: 500; src: url("assets/fonts/JetBrainsMono-Medium.woff2") format("woff2"); }
+    #root { position: relative; width: 1080px; height: 1080px; overflow: hidden; }
+    #root .f04-bg { position: absolute; inset: 0; background: #FAF9F5; }
+    #root .f04-abs { position: absolute; }
+    #root .f04-kicker { left: 60px; top: 90px; font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 28px; letter-spacing: 0.16em; text-transform: uppercase; color: #141413; white-space: nowrap; }
+    #root .f04-kicker b { color: #CC785C; font-weight: 500; margin-right: 12px; }
+    #root .f04-block { left: 380px; top: 170px; width: 520px; height: 500px; background: #181715; border: 1px solid rgba(250,249,245,0.14); border-radius: 8px; box-shadow: 0 1px 3px rgba(20,20,19,0.08), 0 4px 16px rgba(20,20,19,0.04); overflow: hidden; }
+    #root .f04-row { position: absolute; left: 0; width: 100%; box-sizing: border-box; padding: 0 28px; display: flex; flex-direction: column; justify-content: center; border-bottom: 1px solid rgba(250,249,245,0.14); background: #1F1E1B; }
+    #root .f04-row.f04-r1 { top: 0; height: 190px; }
+    #root .f04-row.f04-r2 { top: 190px; height: 150px; }
+    #root .f04-row.f04-r3 { top: 340px; height: 160px; border-bottom: 0; background: #181715; }
+    #root .f04-rt { font-family: "EB Garamond", Georgia, serif; font-weight: 400; font-size: 52px; line-height: 1.05; letter-spacing: -0.018em; color: #FAF9F5; }
+    #root .f04-rs { margin-top: 10px; font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 22px; letter-spacing: 0.02em; color: rgba(250,249,245,0.62); }
+    #root .f04-r3 .f04-rt { color: rgba(250,249,245,0.78); font-style: italic; }
+    #root .f04-shine { position: absolute; inset: 0; background: #252320; opacity: 0; }
+    #root .f04-arrow { left: 936px; top: 176px; width: 2px; height: 488px; background: #141413; transform-origin: 50% 0; }
+    #root .f04-head { left: 930px; top: 660px; width: 14px; height: 14px; border-right: 2px solid #141413; border-bottom: 2px solid #141413; transform: rotate(45deg); }
+    #root .f04-note { left: 952px; top: 170px; width: 110px; font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 22px; line-height: 1.3; letter-spacing: 0.02em; color: #141413; }
+    #root .f04-chip { left: 60px; width: 220px; height: 56px; box-sizing: border-box; background: #EFE9DE; border: 1px solid rgba(20,20,19,0.12); border-radius: 8px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; font-family: "Inter", sans-serif; font-weight: 500; font-size: 24px; color: #141413; }
+    #root .f04-eq { font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 26px; color: #141413; opacity: 0; }
+    #root .f04-band { left: 60px; top: 730px; width: 960px; height: 150px; background: #CC785C; border-radius: 8px; overflow: hidden; }
+    #root .f04-lay { position: absolute; inset: 0; display: flex; align-items: center; padding: 0 40px; gap: 28px; color: #FAF9F5; }
+    #root .f04-fig { font-family: "EB Garamond", Georgia, serif; font-weight: 400; font-size: 100px; line-height: 0.95; letter-spacing: -0.025em; white-space: nowrap; min-width: 120px; }
+    #root .f04-unit { font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 26px; line-height: 1.3; letter-spacing: 0.02em; }
+    #root .f04-unit2 { position: absolute; left: 0; top: 0; white-space: nowrap; }
+    #root .f04-ubox { position: relative; height: 70px; width: 520px; }
+  </style>
+
+  <div data-hf-id="hf-vqa4" id="root" data-composition-id="04-prompt-order" data-start="0" data-duration="11.654" data-width="1080" data-height="1080">
+    <div data-hf-id="hf-i4im" id="f04-bg" class="clip f04-bg" data-start="0" data-duration="11.654" data-track-index="0"></div>
+
+    <div data-hf-id="hf-b48a" class="f04-abs f04-kicker" id="f04-kicker"><b data-hf-id="hf-u3lo">✱</b>Fix 1</div>
+
+    <div data-hf-id="hf-k9q9" class="f04-abs f04-block" id="f04-block">
+      <div data-hf-id="hf-ys5l" class="f04-row f04-r1" id="f04-r1"><div data-hf-id="hf-cil5" class="f04-shine" id="f04-sh1"></div><div data-hf-id="hf-bg6y" class="f04-rt" style="position:relative">Shared context</div><div data-hf-id="hf-vrrr" class="f04-rs" style="position:relative">same bytes, every call</div></div>
+      <div data-hf-id="hf-9x9j" class="f04-row f04-r2" id="f04-r2"><div data-hf-id="hf-ggp6" class="f04-shine" id="f04-sh2"></div><div data-hf-id="hf-r64k" class="f04-rt" style="position:relative">Tools and policy</div><div data-hf-id="hf-oggn" class="f04-rs" style="position:relative">same bytes, every call</div></div>
+      <div data-hf-id="hf-8my5" class="f04-row f04-r3" id="f04-r3"><div data-hf-id="hf-ttay" class="f04-rt">Role instructions</div><div data-hf-id="hf-sbdn" class="f04-rs">differs per path</div></div>
+    </div>
+
+    <div data-hf-id="hf-igrl" class="f04-abs f04-arrow" id="f04-arrow"></div>
+    <div data-hf-id="hf-4fkb" class="f04-abs f04-head" id="f04-head"></div>
+    <div data-hf-id="hf-i80q" class="f04-abs f04-note" id="f04-note">stable prefix first</div>
+
+    <div data-hf-id="hf-nb2m" class="f04-abs f04-chip" id="f04-c0" style="top:180px">routing<span data-hf-id="hf-dqsh" class="f04-eq">=</span></div>
+    <div data-hf-id="hf-hfkr" class="f04-abs f04-chip" id="f04-c1" style="top:260px">gate<span data-hf-id="hf-6cqd" class="f04-eq">=</span></div>
+    <div data-hf-id="hf-8i71" class="f04-abs f04-chip" id="f04-c2" style="top:340px">remediation<span data-hf-id="hf-7jng" class="f04-eq">=</span></div>
+    <div data-hf-id="hf-wajy" class="f04-abs f04-chip" id="f04-c3" style="top:420px">synthesis<span data-hf-id="hf-75cf" class="f04-eq">=</span></div>
+    <div data-hf-id="hf-f63r" class="f04-abs f04-chip" id="f04-c4" style="top:500px">triage<span data-hf-id="hf-8c9i" class="f04-eq">=</span></div>
+    <div data-hf-id="hf-d6u8" class="f04-abs f04-chip" id="f04-c5" style="top:580px">audit<span data-hf-id="hf-7xyh" class="f04-eq">=</span></div>
+
+    <div data-hf-id="hf-ujz1" class="f04-abs f04-band" id="f04-band">
+      <div data-hf-id="hf-vp67" class="f04-lay" id="f04-layA">
+        <div data-hf-id="hf-nxqr" class="f04-fig">390–410</div>
+        <div data-hf-id="hf-i8ft" class="f04-unit">K history tokens<br data-hf-id="hf-x5px">rewritten per call</div>
+      </div>
+      <div data-hf-id="hf-ktok" class="f04-lay" id="f04-layB">
+        <div data-hf-id="hf-fv3i" class="f04-fig" id="f04-count">410</div>
+        <div data-hf-id="hf-arxv" class="f04-ubox">
+          <div data-hf-id="hf-sj63" class="f04-unit f04-unit2" id="f04-u1" style="top:12px">K tokens<br data-hf-id="hf-rsrt">rewritten per call</div>
+          <div data-hf-id="hf-61md" class="f04-unit f04-unit2" id="f04-u2" style="top:12px;font-size:44px;line-height:1.1">writes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    const E = "power2.out";
+
+    // Scene 1 (0-4.0): kicker, block builds top to bottom, stable-prefix arrow
+    tl.fromTo("#f04-kicker", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, ease: E }, 0.1);
+    tl.fromTo("#f04-block", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: E }, 0.2);
+    tl.fromTo("#f04-r1", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.6, ease: E }, 0.5);
+    tl.fromTo("#f04-r2", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.6, ease: E }, 1.3);
+    tl.fromTo("#f04-r3", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.6, ease: E }, 2.1);
+    tl.fromTo("#f04-arrow", { scaleY: 0, opacity: 1 }, { scaleY: 1, duration: 1.8, ease: "power1.inOut" }, 1.2);
+    tl.fromTo("#f04-head", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: E }, 2.9);
+    tl.fromTo("#f04-note", { opacity: 0, x: -8 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 2.2);
+
+    // Scene 2 (4.0-8.0): six chips fan out, then snap onto the block
+    for (let i = 0; i < 6; i++) {
+      const t0 = 4.0 + i * 0.2;
+      tl.fromTo("#f04-c" + i, { opacity: 0, x: 280, y: (2.5 - i) * 80 }, { opacity: 1, x: 0, y: 0, duration: 0.6, ease: E }, t0);
+      const t1 = 5.5 + i * 0.25;
+      tl.to("#f04-c" + i, { x: 110, duration: 0.3, ease: "power3.out" }, t1);
+      tl.to("#f04-c" + i + " .f04-eq", { opacity: 1, duration: 0.2, ease: E }, t1 + 0.2);
+    }
+    tl.to("#f04-sh1", { opacity: 1, duration: 0.5, ease: E }, 5.8);
+    tl.to("#f04-sh2", { opacity: 1, duration: 0.5, ease: E }, 6.3);
+
+    // Scene 3 (8.0-11.1): coral band, count down, resolve to "0 writes"
+    tl.fromTo("#f04-band", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: E }, 8.0);
+    tl.fromTo("#f04-layA", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: E }, 8.2);
+    tl.to("#f04-layA", { opacity: 0, duration: 0.3, ease: E }, 8.9);
+    tl.fromTo("#f04-layB", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: E }, 9.0);
+    tl.fromTo("#f04-u2", { opacity: 0 }, { opacity: 0, duration: 0.01 }, 0);
+    const c = { v: 410 };
+    tl.fromTo(c, { v: 410 }, { v: 0, duration: 1.3, ease: "power2.inOut",
+      onUpdate: function () { document.getElementById("f04-count").textContent = String(Math.round(c.v)); } }, 9.1);
+    tl.to("#f04-u1", { opacity: 0, duration: 0.3, ease: E }, 10.4);
+    tl.to("#f04-u2", { opacity: 1, duration: 0.4, ease: E }, 10.5);
+
+    tl.timeScale(0.9965);
+
+    window.__timelines["04-prompt-order"] = tl;
+  </script>
+</template>

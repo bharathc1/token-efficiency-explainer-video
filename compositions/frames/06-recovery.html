@@ -1,0 +1,76 @@
+<template id="f06-template">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+  @font-face { font-family: "EB Garamond"; font-weight: 400; src: url("assets/fonts/EBGaramond-Regular.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("assets/fonts/Inter-Regular.woff2") format("woff2"); }
+  @font-face { font-family: "JetBrains Mono"; font-weight: 500; src: url("assets/fonts/JetBrainsMono-Medium.woff2") format("woff2"); }
+  #root { position: absolute; left: 0; top: 0; width: 1080px; height: 1080px; overflow: hidden; container-type: size; }
+  #root .f6-bg { position: absolute; inset: 0; background: #FAF9F5; }
+  #root .f6-kicker { position: absolute; left: 80px; top: 88px; font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 28px; letter-spacing: 0.16em; text-transform: uppercase; color: #141413; }
+  #root .f6-kicker .f6-star { color: #CC785C; margin-right: 14px; }
+  #root .f6-rule { position: absolute; left: 80px; top: 142px; width: 920px; height: 1px; background: rgba(20,20,19,0.12); }
+  #root .f6-chip { position: absolute; left: 80px; top: 180px; height: 72px; padding: 0 30px; display: flex; align-items: center; gap: 18px; background: #181715; border: 1px solid rgba(250,249,245,0.14); border-radius: 9999px; font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 28px; letter-spacing: 0.02em; color: #FAF9F5; }
+  #root .f6-dot { width: 16px; height: 16px; border-radius: 9999px; background: #C64545; }
+  #root .f6-loop { position: absolute; left: 360px; top: 280px; width: 360px; height: 360px; }
+  #root .f6-loop svg { width: 360px; height: 360px; overflow: visible; }
+  #root .f6-count { position: absolute; left: 360px; top: 350px; width: 360px; text-align: center; font-family: "EB Garamond", Georgia, serif; font-weight: 400; font-size: 190px; line-height: 0.95; letter-spacing: -0.025em; color: #CC785C; }
+  #root .f6-unit { position: absolute; left: 360px; top: 540px; width: 360px; text-align: center; font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 26px; letter-spacing: 0.02em; color: #141413; }
+  #root .f6-class { position: absolute; left: 80px; top: 676px; width: 920px; display: flex; gap: 24px; }
+  #root .f6-label { padding: 18px 28px; background: #EFE9DE; border: 1px solid rgba(20,20,19,0.12); border-radius: 12px; font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 28px; letter-spacing: 0.02em; color: #141413; }
+  #root .f6-ruleline { position: absolute; left: 80px; top: 780px; width: 920px; font-family: "EB Garamond", Georgia, serif; font-style: italic; font-weight: 400; font-size: 50px; line-height: 1.12; letter-spacing: -0.012em; color: #141413; }
+  #root .f6-label.f6-no { color: rgba(20,20,19,0.55); text-decoration: line-through; text-decoration-thickness: 2px; }
+</style>
+<div id="root" data-composition-id="06-recovery" data-start="0" data-duration="9.486" data-width="1080" data-height="1080">
+  <div id="f06-bg" class="clip f6-bg" data-start="0" data-duration="9.486" data-track-index="0"></div>
+  <div class="f6-kicker" id="f06-kicker"><span class="f6-star">✱</span>Fix 3</div>
+  <div class="f6-rule" id="f06-rule"></div>
+  <div class="f6-chip" id="f06-chip"><span class="f6-dot"></span><span>Query Runner: unavailable</span></div>
+  <div class="f6-loop" id="f06-loop">
+    <svg viewBox="0 0 360 360">
+      <g id="f06-break">
+        <g id="f06-spin">
+          <path id="f06-arc" d="M 287.2 90 A 140 140 0 1 1 155.7 42.1" fill="none" stroke="#CC785C" stroke-width="10" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="0" />
+          <polygon id="f06-head" points="173.4,39 158.1,55.9 153.3,28.3" fill="#CC785C" stroke="#CC785C" stroke-width="6" stroke-linejoin="round" transform="translate(0 0)" />
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div class="f6-count" id="f06-count">0</div>
+  <div class="f6-unit" id="f06-unit">model calls</div>
+  <div class="f6-class" id="f06-class">
+    <div class="f6-label f6-no" id="f06-no">SQL failure</div>
+    <div class="f6-label" id="f06-yes">transport failure</div>
+  </div>
+  <div class="f6-ruleline" id="f06-ruleline">A recovery call should have a plausible way to change the outcome.</div>
+</div>
+<script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  const $ = (id) => "#f06-" + id;
+  const cnt = { v: 0 };
+  const countEl = document.querySelector($("count"));
+
+  // Scene 1 (0-3.0): kicker, chip, regenerate-SQL loop arrow
+  tl.fromTo($("kicker"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.05);
+  tl.fromTo($("rule"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.7, ease: "power2.out" }, 0.15);
+  tl.fromTo($("loop"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 0.2);
+  tl.fromTo($("count"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.3);
+  tl.fromTo($("unit"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.5);
+  tl.fromTo($("chip"), { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 1.0);
+  tl.fromTo($("no"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 2.0);
+
+  // Scene 2 (3.0-7.0): spin loop, counter climbs to 44 and holds
+  tl.fromTo($("spin"), { svgOrigin: "180 180", rotation: 0 }, { svgOrigin: "180 180", rotation: 1440, duration: 3.4, ease: "power1.inOut" }, 3.0);
+  tl.fromTo(cnt, { v: 0 }, { v: 44, duration: 3.4, ease: "power1.inOut", onUpdate: () => { countEl.textContent = String(Math.round(cnt.v)); } }, 3.0);
+
+  // Scene 3 (7.0-end): classifier snaps on, loop breaks off, rule line lands last, hold
+  tl.fromTo($("yes"), { opacity: 0, scale: 0.9, x: -30 }, { opacity: 1, scale: 1, x: 0, duration: 0.35, ease: "power3.out" }, 7.0);
+  tl.fromTo($("break"), { svgOrigin: "180 180", x: 0, y: 0, rotation: 0, opacity: 1 }, { svgOrigin: "180 180", x: 70, y: 50, rotation: 28, opacity: 0.22, duration: 0.7, ease: "power2.out" }, 7.2);
+  tl.fromTo($("no"), { opacity: 1 }, { opacity: 0.6, duration: 0.4, ease: "power1.out" }, 7.2);
+  tl.fromTo($("ruleline"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 7.8);
+
+  tl.timeScale(0.971);
+
+  window.__timelines["06-recovery"] = tl;
+</script>
+</template>

@@ -1,0 +1,167 @@
+<template id="thread-template" data-composition-id="thread" data-width="1080" data-height="1080">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+
+<style data-brand-tokens>
+  @font-face { font-family: 'JetBrains Mono'; src: url('assets/fonts/JetBrainsMono-Medium.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+  :root {
+    --ink: #141413;
+    --coral: #CC785C;
+  }
+</style>
+
+<style>
+  #thread-root {
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    pointer-events: none;
+  }
+  #thread-rail {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1080px;
+    height: 56px;
+    opacity: 0;
+  }
+  #thread-hairline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: rgba(20, 20, 19, 0.12);
+  }
+  .thread-label {
+    position: absolute;
+    top: 0;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(20, 20, 19, 0.66);
+  }
+  .thread-dot {
+    flex: none;
+    width: 8px;
+    height: 8px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: 1.5px solid rgba(20, 20, 19, 0.66);
+    background: transparent;
+  }
+  #thread-underline {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 10px;
+    background: #CC785C;
+    border-radius: 1px;
+    transform-origin: 0 0;
+  }
+</style>
+
+<div
+  id="thread-root"
+  data-composition-id="thread"
+  data-timeline-locked
+  data-start="0"
+  data-duration="67.919"
+  data-fps="30"
+  data-width="1080"
+  data-height="1080"
+>
+  <div id="thread-rail">
+    <div id="thread-hairline"></div>
+    <div id="thread-underline"></div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var NAMES = ["RESULT", "CACHE", "ORDER", "SCOPE", "RECOVER", "TOTAL"];
+    var STARTS = [0, 17.581, 26.985, 38.139, 48.98, 57.966];
+    var DURATION = 67.919;
+    var FADE = 0.35;
+    var PAD = 40;
+    var CELL = (1080 - PAD * 2) / NAMES.length;
+    // JetBrains Mono advance is 0.6em; 15px type + 0.18em tracking = 11.7px per glyph.
+    var ADVANCE = 15 * 0.6 + 15 * 0.18;
+    var DOT = 8, GAP = 8;
+
+    var INK_IDLE = "rgba(20,20,19,0.66)";
+    var INK_PAST = "rgba(20,20,19,0.8)";
+    var CORAL = "#CC785C";
+
+    var rail = document.getElementById("thread-rail");
+    var lefts = [], widths = [];
+    NAMES.forEach(function (name, i) {
+      var left = PAD + i * CELL;
+      var width = DOT + GAP + name.length * ADVANCE - 15 * 0.18; // drop trailing tracking
+      lefts.push(left);
+      widths.push(width);
+      var label = document.createElement("div");
+      label.className = "thread-label";
+      label.id = "thread-label-" + name.toLowerCase();
+      label.style.left = left + "px";
+      var dot = document.createElement("span");
+      dot.className = "thread-dot";
+      dot.id = "thread-dot-" + name.toLowerCase();
+      var text = document.createElement("span");
+      text.id = "thread-text-" + name.toLowerCase();
+      text.textContent = name;
+      label.appendChild(dot);
+      label.appendChild(text);
+      rail.appendChild(label);
+    });
+
+    window.__timelines = window.__timelines || {};
+    var tl = gsap.timeline({ paused: true });
+    var underline = document.getElementById("thread-underline");
+
+    // rail fade-in
+    tl.fromTo(rail, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0);
+
+    // initial state: first stop already active
+    function els(i) {
+      var n = NAMES[i].toLowerCase();
+      return {
+        label: document.getElementById("thread-label-" + n),
+        dot: document.getElementById("thread-dot-" + n)
+      };
+    }
+    var first = els(0);
+    tl.set(first.label, { color: "#141413" }, 0);
+    tl.set(first.dot, { borderColor: CORAL, backgroundColor: CORAL }, 0);
+    tl.set(underline, { x: lefts[0], width: widths[0] }, 0);
+
+    for (var i = 1; i < NAMES.length; i++) {
+      var t = STARTS[i];
+      var prev = els(i - 1), cur = els(i);
+      // previous: coral -> past ink, marker unfills
+      tl.fromTo(prev.label, { color: "#141413" }, { color: INK_PAST, duration: FADE, ease: "power1.inOut", immediateRender: false }, t);
+      tl.fromTo(prev.dot, { borderColor: CORAL, backgroundColor: CORAL },
+        { borderColor: INK_PAST, backgroundColor: "rgba(250,249,245,0)", duration: FADE, ease: "power1.inOut", immediateRender: false }, t);
+      // current: idle -> coral, marker fills
+      tl.fromTo(cur.label, { color: INK_IDLE }, { color: "#141413", duration: FADE, ease: "power1.inOut", immediateRender: false }, t);
+      tl.fromTo(cur.dot, { borderColor: INK_IDLE, backgroundColor: "rgba(204,120,92,0)" },
+        { borderColor: CORAL, backgroundColor: CORAL, duration: FADE, ease: "power1.inOut", immediateRender: false }, t);
+      // underline slides
+      tl.fromTo(underline, { x: lefts[i - 1], width: widths[i - 1] },
+        { x: lefts[i], width: widths[i], duration: FADE, ease: "power2.inOut", immediateRender: false }, t);
+    }
+
+    // full-span anchor so the sub-comp timeline spans the whole video
+    tl.to({}, { duration: DURATION }, 0);
+    window.__timelines["thread"] = tl;
+  })();
+</script>
+</template>

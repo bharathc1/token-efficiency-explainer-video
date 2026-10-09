@@ -1,0 +1,108 @@
+<template>
+  <style>
+    @font-face { font-family: "EB Garamond"; font-weight: 400; src: local("EB Garamond"), url("assets/fonts/EBGaramond-Regular.woff2") format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 400; src: local("Inter"), url("assets/fonts/Inter-Regular.woff2") format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 500; src: local("Inter Medium"), local("Inter"), url("assets/fonts/Inter-Medium.woff2") format("woff2"); }
+    @font-face { font-family: "JetBrains Mono"; font-weight: 500; src: local("JetBrains Mono"), url("assets/fonts/JetBrainsMono-Medium.woff2") format("woff2"); }
+    #root { position: absolute; left: 0; top: 0; width: 1080px; height: 1080px; overflow: hidden; container-type: size; }
+    #root .f05-bg { position: absolute; left: 0; top: 0; width: 1080px; height: 1080px; background: #FAF9F5; }
+    .f05-abs { position: absolute; }
+    .f05-kicker { left: 70px; top: 84px; font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 28px; letter-spacing: 0.16em; text-transform: uppercase; color: #141413; white-space: nowrap; }
+    .f05-kicker b { color: #CC785C; font-weight: 500; margin-right: 14px; }
+    .f05-doc { left: 70px; top: 150px; width: 330px; height: 690px; background: #EFE9DE; border: 1px solid rgba(20,20,19,.12); border-radius: 12px; box-shadow: 0 1px 3px rgba(20,20,19,.08), 0 4px 16px rgba(20,20,19,.04); overflow: hidden; }
+    .f05-doc-tag { left: 26px; top: 24px; font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 26px; letter-spacing: 0.02em; color: #141413; line-height: 1.25; }
+    .f05-doc-num { left: 26px; top: 100px; font-family: "EB Garamond", Georgia, serif; font-size: 92px; line-height: 0.95; letter-spacing: -0.025em; color: #141413; white-space: nowrap; }
+    .f05-doc-unit { left: 26px; top: 214px; font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 26px; color: #141413; white-space: nowrap; }
+    .f05-doc-tok { left: 26px; top: 252px; font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 26px; color: #141413; white-space: nowrap; }
+    .f05-rule { left: 26px; top: 306px; width: 278px; height: 1px; background: rgba(20,20,19,.12); }
+    .f05-bar { left: 26px; height: 10px; border-radius: 6px; background: rgba(20,20,19,.16); }
+    .f05-bar-hl { left: 26px; height: 10px; border-radius: 6px; background: #141413; opacity: 0; }
+    .f05-lead { left: 70px; top: 850px; font-family: "Inter", sans-serif; font-weight: 500; font-size: 26px; color: #141413; opacity: 0; }
+    .f05-planner { left: 470px; top: 395px; width: 190px; height: 190px; border-radius: 12px; background: #CC785C; color: #FAF9F5; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+    .f05-planner .g { font-family: "EB Garamond", Georgia, serif; font-size: 80px; line-height: 1; }
+    .f05-planner .l { font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 26px; letter-spacing: 0.16em; text-transform: uppercase; }
+    .f05-svg { left: 0; top: 0; width: 1080px; height: 1080px; overflow: visible; pointer-events: none; }
+    .f05-card { left: 770px; width: 240px; height: 150px; background: #FAF9F5; border: 1px solid rgba(20,20,19,.2); border-radius: 12px; box-shadow: 0 1px 3px rgba(20,20,19,.08), 0 4px 16px rgba(20,20,19,.04); padding: 20px 22px; }
+    .f05-card .t { font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 26px; letter-spacing: 0.16em; text-transform: uppercase; color: #141413; }
+    .f05-card .s { margin-top: 16px; font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 26px; color: #141413; line-height: 1.3; white-space: nowrap; }
+    .f05-card .s i { font-style: normal; color: #5DB8A6; }
+  </style>
+  <div data-hf-id="hf-g54y" id="root" data-composition-id="05-worker-context" data-start="0" data-duration="11.341" data-width="1080" data-height="1080">
+    <div data-hf-id="hf-yh4r" id="f05-bg" class="clip f05-abs f05-bg" data-start="0" data-duration="11.721" data-track-index="0"></div>
+
+    <div data-hf-id="hf-f8au" class="f05-abs f05-kicker" id="f05-kicker"><b data-hf-id="hf-u3lo" id="f05-spike">✱</b>Fix 2</div>
+
+    <svg data-hf-id="hf-ggay" id="f05-svg" class="f05-abs f05-svg" viewBox="0 0 1080 1080" fill="none">
+      <path data-hf-id="hf-iz4k" id="f05-c0" d="M400 490 H470" stroke="#141413" stroke-opacity=".4" stroke-width="2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+      <path data-hf-id="hf-dfgq" id="f05-c1" d="M660 490 H715 V265 H770" stroke="#141413" stroke-opacity=".4" stroke-width="2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+      <path data-hf-id="hf-rqtt" id="f05-c2" d="M660 490 H770" stroke="#141413" stroke-opacity=".4" stroke-width="2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+      <path data-hf-id="hf-65ck" id="f05-c3" d="M660 490 H715 V715 H770" stroke="#141413" stroke-opacity=".4" stroke-width="2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+    </svg>
+
+    <div data-hf-id="hf-gk4q" class="f05-abs f05-doc" id="f05-doc">
+      <div data-hf-id="hf-kaxk" id="f05-doc-tag" class="f05-abs f05-doc-tag">AI Persona Context</div>
+      <div data-hf-id="hf-jjx1" id="f05-doc-num" class="f05-abs f05-doc-num">~500K</div>
+      <div data-hf-id="hf-rvxp" id="f05-doc-unit" class="f05-abs f05-doc-unit">characters</div>
+      <div data-hf-id="hf-oi44" id="f05-doc-tok" class="f05-abs f05-doc-tok">≈125K tokens</div>
+      <div data-hf-id="hf-ep8q" id="f05-rule" class="f05-abs f05-rule"></div>
+      <div data-hf-id="hf-a2ax" id="f05-bars"></div>
+    </div>
+
+    <div data-hf-id="hf-i6ae" class="f05-abs f05-planner" id="f05-planner"><div data-hf-id="hf-98qa" class="g">✱</div><div data-hf-id="hf-vsco" class="l">Planner</div></div>
+
+    <div data-hf-id="hf-hlx5" class="f05-abs f05-card" id="f05-k1" style="top:190px"><div data-hf-id="hf-jgzp" class="t">Worker A</div><div data-hf-id="hf-eag8" class="s"><i data-hf-id="hf-k8rq">term</i> = definition<br data-hf-id="hf-x5px">id: persona_a</div></div>
+    <div data-hf-id="hf-qh5y" class="f05-abs f05-card" id="f05-k2" style="top:415px"><div data-hf-id="hf-knws" class="t">Worker B</div><div data-hf-id="hf-d3j5" class="s"><i data-hf-id="hf-otm2">term</i> = definition<br data-hf-id="hf-rsrt">id: persona_b</div></div>
+    <div data-hf-id="hf-0ief" class="f05-abs f05-card" id="f05-k3" style="top:640px"><div data-hf-id="hf-k9lr" class="t">Worker C</div><div data-hf-id="hf-dhu6" class="s"><i data-hf-id="hf-p7x3">term</i> = definition<br data-hf-id="hf-szow">id: persona_c</div></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function () {
+      var doc = document.getElementById("f05-doc");
+      var bars = document.getElementById("f05-bars");
+      var widths = [278,250,270,220,278,266,230,274,200,278,256,240,278,226,268,210,278,252,234,270,190,278];
+      var barEls = [];
+      for (var i = 0; i < widths.length; i++) {
+        var b = document.createElement("div");
+        b.className = "f05-abs f05-bar"; b.id = "f05-bar-" + i;
+        b.style.top = (336 + i * 16) + "px";
+        b.style.width = widths[i] + "px";
+        bars.appendChild(b);
+        barEls.push(b);
+      }
+      var hl = document.createElement("div");
+      hl.className = "f05-abs f05-bar-hl"; hl.id = "f05-bar-hl";
+      hl.style.top = "336px"; hl.style.width = "278px";
+      bars.appendChild(hl);
+
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+
+      // Scene 1 (0 - 3.5): kicker + document block
+      tl.fromTo("#f05-kicker", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.1);
+      tl.fromTo("#f05-doc", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 0.2);
+      tl.fromTo(".f05-bar", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "power2.out", stagger: 0.04 }, 0.9);
+
+      // Scene 2 (3.5 - 8.0): planner takes in the whole document
+      tl.fromTo("#f05-c0", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 3.5);
+      tl.fromTo("#f05-planner", { opacity: 0, scale: 0.92, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.7, ease: "power2.out" }, 3.8);
+      // read-through sweep over the whole document
+      tl.fromTo(hl, { opacity: 0, y: 0 }, { opacity: 0.85, duration: 0.2, ease: "none" }, 4.4);
+      tl.to(hl, { y: 15 * 16 + 5 * 16 + 16, duration: 2.8, ease: "none" }, 4.4);
+      tl.to(hl, { opacity: 0, duration: 0.3, ease: "none" }, 7.2);
+
+      // Scene 3 (8.0 - 11.2): three cards peel off the planner, then hold
+      var starts = [8.0, 8.6, 9.2];
+      var conns = ["#f05-c1", "#f05-c2", "#f05-c3"];
+      var cards = ["#f05-k1", "#f05-k2", "#f05-k3"];
+      for (var j = 0; j < 3; j++) {
+        tl.fromTo(conns[j], { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" }, starts[j]);
+        tl.fromTo(cards[j], { opacity: 0, x: -50, scale: 0.94 }, { opacity: 1, x: 0, scale: 1, duration: 0.6, ease: "power2.out" }, starts[j] + 0.3);
+      }
+      tl.set({}, {}, 11.2);
+
+      tl.timeScale(1.0351);
+
+      window.__timelines["05-worker-context"] = tl;
+    })();
+  </script>
+</template>
